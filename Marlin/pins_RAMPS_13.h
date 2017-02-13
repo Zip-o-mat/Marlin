@@ -1,5 +1,27 @@
 /**
- * Arduino Mega with RAMPS v1.3 v1.4 pin assignments
+ * Marlin 3D Printer Firmware
+ * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ *
+ * Based on Sprinter and grbl.
+ * Copyright (C) 2011 Camiel Gubbels / Erik van der Zalm
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+/**
+ * Arduino Mega with RAMPS v1.3 pin assignments
  *
  * Applies to the following boards:
  *
@@ -8,74 +30,11 @@
  *  RAMPS_13_EFF (Extruder, Fan, Fan)
  *  RAMPS_13_EEF (Extruder, Extruder, Fan)
  *  RAMPS_13_SF  (Spindle, Controller Fan)
- * 
- *  RAMPS_14_EFB (Extruder, Fan, Bed)
- *  RAMPS_14_EEB (Extruder, Extruder, Bed)
- *  RAMPS_14_EFF (Extruder, Fan, Fan)
- *  RAMPS_14_EEF (Extruder, Extruder, Fan)
- *  RAMPS_14_SF  (Spindle, Controller Fan)
  *
- *  Other pins_MYBOARD.h files may override these defaults
- *
- *  Differences between
- *  RAMPS_13 | RAMPS_14
- *         7 | 11
  */
 
-#if !defined(__AVR_ATmega1280__) && !defined(__AVR_ATmega2560__)
-  #error Oops!  Make sure you have 'Arduino Mega' selected from the 'Tools -> Boards' menu.
-#endif
-
-#define LARGE_FLASH true
-
-#ifdef IS_RAMPS_14
-  #define SERVO0_PIN       11
-#else
-  #define SERVO0_PIN        7 // RAMPS_13 // Will conflict with BTN_EN2 on LCD_I2C_VIKI
-#endif
-#define SERVO1_PIN          6
-#define SERVO2_PIN          5
-#define SERVO3_PIN          4
-
-#define X_STEP_PIN         54
-#define X_DIR_PIN          55
-#define X_ENABLE_PIN       38
-#define X_MIN_PIN           3
-#define X_MAX_PIN           2
-
-#define Y_STEP_PIN         60
-#define Y_DIR_PIN          61
-#define Y_ENABLE_PIN       56
-#define Y_MIN_PIN          14
-#define Y_MAX_PIN          15
-
-#define Z_STEP_PIN         46
-#define Z_DIR_PIN          48
-#define Z_ENABLE_PIN       62
-#define Z_MIN_PIN          18
-#define Z_MAX_PIN          19
-
-#define E0_STEP_PIN        26
-#define E0_DIR_PIN         28
-#define E0_ENABLE_PIN      24
-
-#define E1_STEP_PIN        36
-#define E1_DIR_PIN         34
-#define E1_ENABLE_PIN      30
-
-#define SDPOWER            -1
-#define SDSS               53
-#define LED_PIN            13
-
-#if ENABLED(FILAMENT_SENSOR)  // FMM added for Filament Extruder
-  // define analog pin for the filament width sensor input
-  // Use the RAMPS 1.4 Analog input 5 on the AUX2 connector
-  #define FILWIDTH_PIN      5
-#endif
-
-#if ENABLED(Z_MIN_PROBE_ENDSTOP)
-  // Define a pin to use as the signal pin on Arduino for the Z_PROBE endstop.
-  #define Z_MIN_PROBE_PIN  32
+#ifndef BOARD_NAME
+  #define BOARD_NAME "RAMPS 1.3"
 #endif
 
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
